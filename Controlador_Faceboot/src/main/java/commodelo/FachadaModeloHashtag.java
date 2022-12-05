@@ -7,6 +7,7 @@ package commodelo;
 import coninterfaces.IFachadaModeloHashtag;
 import entidades.Hashtag;
 import entidades.Publicacion;
+import excepciones.NotFoundException;
 import excepciones.PersistException;
 import interfaces.IModeloHashtag;
 import java.util.List;
@@ -34,7 +35,7 @@ public class FachadaModeloHashtag implements IFachadaModeloHashtag{
     }
 
     @Override
-    public Hashtag consultarHashtag(Integer idHashtag) throws PersistException{
+    public Hashtag consultarHashtag(Integer idHashtag) throws NotFoundException{
         return modeloHashtag.consultar(idHashtag);
     }
 

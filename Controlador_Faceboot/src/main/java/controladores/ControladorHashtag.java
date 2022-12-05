@@ -8,6 +8,7 @@ import commodelo.FachadaModeloHashtag;
 import coninterfaces.IFachadaModeloHashtag;
 import entidades.Hashtag;
 import eventos.Eventos;
+import excepciones.NotFoundException;
 import excepciones.PersistException;
 import java.util.List;
 import peticiones.PeticionHashtag;
@@ -46,7 +47,7 @@ public class ControladorHashtag {
         try{
             Hashtag hashtagConsultado = fachadaHashtag.consultarHashtag(idHashtag);
             return new PeticionHashtag(Eventos.consultarHashtag, 200, hashtagConsultado);
-        }catch(PersistException pe){
+        }catch(NotFoundException pe){
             return new PeticionHashtag(Eventos.consultarHashtag, 503, pe.getMessage());
         }
     }
