@@ -6,7 +6,6 @@ package controladores;
 
 import commodelo.FachadaModeloUsuario;
 import coninterfaces.IFachadaModeloUsuario;
-import entidades.Publicacion;
 import entidades.Usuario;
 import eventos.Eventos;
 import excepciones.FacebootException;
@@ -15,17 +14,27 @@ import peticiones.PeticionUsuario;
 
 /**
  *
- * @author jegav
+ * @author Jesus Valencia, Antonio del Pardo, Marco Irineo, Giovanni Garrido
  */
 public class ControladorUsuario {
     
+    /**
+     * Instancia de IFachadaModeloUsuario
+     */
     private IFachadaModeloUsuario fachadaUsuario;
 
+    /**
+     * Constructor que inicializa la instancia de la clase
+     */
     public ControladorUsuario() {
         this.fachadaUsuario = new FachadaModeloUsuario();
     }
     
-    
+    /**
+     * Método registra usuario por medio de un usuario
+     * @param usuario a registrar
+     * @return PeticionUsuario con el resultado de esto
+     */
     public PeticionUsuario registrarUsuario(Usuario usuario){
         try{
             Usuario usuarioRegistrado = fachadaUsuario.agregarUsuario(usuario);
@@ -37,6 +46,11 @@ public class ControladorUsuario {
         } 
     }
     
+    /**
+     * Método que se encarga de iniciar sesión por facebook
+     * @param usuario a comparar credenciales he iniciar sesión
+     * @return PeticionUsuario con el resultado de la acción
+     */
     public PeticionUsuario IniciarSesionFacebook(Usuario usuario){
         Usuario usuarioEncontrado = fachadaUsuario.iniciarSesionFacebook(usuario);
         if(usuarioEncontrado == null){
@@ -45,6 +59,11 @@ public class ControladorUsuario {
         return new PeticionUsuario(Eventos.Login, 200, usuarioEncontrado);
     }
     
+    /**
+     * Método que se encarga de iniciar sesión
+     * @param usuario a comparar credenciales he iniciar sesión
+     * @return PeticionUsuario con el resultado de la acción
+     */
     public PeticionUsuario IniciarSesion(Usuario usuario){
         Usuario usuarioEncontrado = fachadaUsuario.iniciarSesion(usuario);
         if(usuarioEncontrado == null){
@@ -53,14 +72,20 @@ public class ControladorUsuario {
         return new PeticionUsuario(Eventos.Login, 200, usuarioEncontrado);
     }
     
+    /**
+     * Método que se encarga de editar el perfil de un usuario
+     * @param usuario a editar perfil
+     * @return usuario con perfil editado
+     */
     public Usuario editarPerfil(Usuario usuario){
         return fachadaUsuario.editarPerfil(usuario);
     }
-    
-    public Usuario eliminarUsuario(Usuario usuario){
-        return fachadaUsuario.eliminarUsuario(usuario);
-    }
-    
+   
+    /**
+     * Método que se encarga de consultar un usuario por ID
+     * @param idUsuario a consultar
+     * @return PeticionUsuario consultado
+     */
     public PeticionUsuario consultarUsuarioPorId(Integer idUsuario){
         try{
             Usuario usuarioEncontrado = fachadaUsuario.consultarUsuario(idUsuario);
@@ -71,6 +96,11 @@ public class ControladorUsuario {
         return null;
     }
     
+    /**
+     * Método que se encarga de consultar un usuario por nombre
+     * @param nombre del usuario a consultar
+     * @return PeticionUsuario consultado correspondiente
+     */
     public PeticionUsuario consultarUsuarioPorNombre(String nombre){
         Usuario usuarioEncontrado = fachadaUsuario.consultarUsuarioPorNombre(nombre);
         return new PeticionUsuario(Eventos.consultarUsuarioPorNombre, 200, usuarioEncontrado);

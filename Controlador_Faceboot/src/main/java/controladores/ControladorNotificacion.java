@@ -17,16 +17,27 @@ import peticiones.PeticionNotificaciones;
 
 /**
  *
- * @author tonyd
+ * @author Jesus Valencia, Antonio del Pardo, Marco Irineo, Giovanni Garrido
  */
 public class ControladorNotificacion {
 
+    /**
+     * Instancia de IFachadaModeloNotificacion
+     */
     private IFachadaModeloNotificacion fachadaNotificacion;
 
+    /**
+     * Constructor que inicializa la instancia de la clase
+     */
     public ControladorNotificacion() {
         this.fachadaNotificacion = new FachadaModeloNotificacion();
     }
 
+    /**
+     * Método que se encarga de registrar una notificación
+     * @param notificacion a registrar
+     * @return PeticionNotificacion con resultado de la operación
+     */
     public PeticionNotificacion registrarNotificacion(Notificacion notificacion) {
         try {
             Notificacion notificacionRegistrada = fachadaNotificacion.agregarNotificacion(notificacion);
@@ -36,6 +47,11 @@ public class ControladorNotificacion {
         }
     }
 
+    /**
+     * Método que se encarga de consultar las notificaciones por remitente
+     * @param remitente del cual se consultaran las notificaciones
+     * @return PeticionNotificacion con el resultado de la operación
+     */
     public PeticionNotificaciones consultarNotificacionesPorRemitente(Usuario remitente) {
         try {
             List<Notificacion> notificacionesEncontradas = fachadaNotificacion.consultarNotificacionesPorRemitente(remitente);

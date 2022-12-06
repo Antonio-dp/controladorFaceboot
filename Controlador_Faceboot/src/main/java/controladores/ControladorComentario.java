@@ -15,15 +15,27 @@ import peticiones.PeticionComentarios;
 
 /**
  *
- * @author tonyd
+ * @author Jesus Valencia, Antonio del Pardo, Marco Irineo, Giovanni Garrido
  */
 public class ControladorComentario{
+    
+    /**
+     * Instancia de IFachadaModeloComentario
+     */
     private IFachadaModeloComentario fachadaComentario;
 
+    /**
+     * Constructor que inicializa la instancia de la clase
+     */
     public ControladorComentario() {
         this.fachadaComentario = new FachadaModeloComentario();
     }
 
+    /**
+     * Método que se encarga de registrar un comentario
+     * @param comentario a registrar
+     * @return PeticionComentario con el resultado de la acción
+     */
     public PeticionComentario registrarComentario(Comentario comentario) {
         
         try{
@@ -35,6 +47,11 @@ public class ControladorComentario{
         
     }
     
+    /**
+     * Método que se encarga de consultar los compentarios por medio de la publicación
+     * @param idPublicacion a consultar
+     * @return PeticionComentario con el resultado de la acción
+     */
     public PeticionComentarios consultarComentarios(Integer idPublicacion){
         try{
             List<Comentario> comentarios = fachadaComentario.consultarComentarios(idPublicacion);
@@ -44,6 +61,11 @@ public class ControladorComentario{
         }
     }
  
+    /**
+     * Método que se encarga de eliminar un comentario
+     * @param comentario a eliminar
+     * @return PeticionComentario con el resultado de la acción
+     */
     public PeticionComentario eliminarComentario(Comentario comentario) {
         try{
             Comentario comentarioEliminado = fachadaComentario.eliminarComentario(comentario);

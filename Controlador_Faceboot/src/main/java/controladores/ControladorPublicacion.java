@@ -16,16 +16,27 @@ import peticiones.PeticionPublicaciones;
 
 /**
  *
- * @author tonyd
+ * @author Jesus Valencia, Antonio del Pardo, Marco Irineo, Giovanni Garrido
  */
 public class ControladorPublicacion {
 
+    /**
+     * Instancia de IFachadaModeloPublicacion
+     */
     private IFachadaModeloPublicacion fachadaPublicacion;
 
+    /**
+     * Contructor que inicializa la instancia de la clase
+     */
     public ControladorPublicacion() {
         this.fachadaPublicacion = new FachadaModeloPublicacion();
     }
 
+    /**
+     * Método que registra publicación
+     * @param publicacion a registrar
+     * @return PeticionPublicacion que registra lo sucedido.
+     */
     public PeticionPublicacion registrarPublicacion(Publicacion publicacion) {
         try {
             Publicacion publicacionRegistrada = fachadaPublicacion.agregarPublicacion(publicacion);
@@ -36,6 +47,10 @@ public class ControladorPublicacion {
 
     }
 
+    /**
+     * Método para consultarPublicaciones
+     * @return PeticionPublicacion con el resultado de la consulta
+     */
     public PeticionPublicaciones consultarPublicaciones() {
         try {
             List<Publicacion> publicaciones = fachadaPublicacion.consultarPublicaciones();
@@ -45,6 +60,11 @@ public class ControladorPublicacion {
         }
     }
 
+    /**
+     * Método que elimina la publicación
+     * @param publicacion a eliminar
+     * @return PeticionPublicacion con el resultado de la eliminación
+     */
     public PeticionPublicacion eliminarPublicacion(Publicacion publicacion) {
         try {
             Publicacion publicacionEliminada = fachadaPublicacion.eliminarPublicacion(publicacion);
@@ -54,6 +74,11 @@ public class ControladorPublicacion {
         }
     }
 
+    /**
+     * Método que se encarga de consultar publicaciones por etiqueta
+     * @param hashtag etiqueta a buscar
+     * @return PeticionPublicacion con el resultado de la consulta
+     */
     public PeticionPublicaciones consultarPublicacionesPorEtiqueta(String hashtag) {
         try {
             List<Publicacion> publicacionesEncontradas = this.fachadaPublicacion.consultarPublicacionesPorEtiqueta(hashtag);
